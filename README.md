@@ -1,4 +1,4 @@
-# BlackJack Jouve_Courcelle
+# BlackJack Jouve & Courcelle
 
 ## Avancement du TP
 
@@ -16,16 +16,16 @@ Le jeu a bien le fonctionnement attendu. Pour lancer la partie sans mise, il fau
 ## Captures d'écran
 
 ***Lancement de l'application :***
-![](screenshots/start.png)
+![](/screenshots/start.png)
 
 ***Changement de theme :***
-![](screenshots/theme.png)
+![](/screenshots/theme.png)
 
 ***Configuration :***
-![](screenshots/config.png)
+![](/screenshots/config.png)
 
 ***Lancement d'une partie :***
-![](screenshots/play.png)
+![](/screenshots/play.png)
 
 ***Fin d'une partie :***
-![](screenshots/end.png)
+![](/screenshots/end.png)
