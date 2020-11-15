@@ -16,7 +16,7 @@ Le jeu a bien le fonctionnement attendu. Pour lancer la partie sans mise, il fau
 ## Captures d'écran
 
 ***Lancement de l'application :***
-![](/screenshots/start.png)
+![](https://github.com/AntoineCourcelle/BlackJack/blob/main/screenshots/start.PNG)
 
 ***Changement de theme :***
 ![](/screenshots/theme.png)
