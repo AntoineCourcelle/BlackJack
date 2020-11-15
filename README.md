@@ -16,16 +16,21 @@ Le jeu a bien le fonctionnement attendu. Pour lancer la partie sans mise, il fau
 ## Captures d'écran
 
 ***Lancement de l'application :***
+
 ![](https://github.com/AntoineCourcelle/BlackJack/blob/main/screenshots/start.PNG)
 
 ***Changement de theme :***
-![](/screenshots/theme.png)
+
+![](https://github.com/AntoineCourcelle/BlackJack/blob/main/screenshots/theme.PNG)
 
 ***Configuration :***
-![](/screenshots/config.png)
+
+![](https://github.com/AntoineCourcelle/BlackJack/blob/main/screenshots/config.PNG)
 
 ***Lancement d'une partie :***
-![](/screenshots/play.png)
+
+![](https://github.com/AntoineCourcelle/BlackJack/blob/main/screenshots/play.PNG)
 
 ***Fin d'une partie :***
-![](/screenshots/end.png)
+
+![](https://github.com/AntoineCourcelle/BlackJack/blob/main/screenshots/end.PNG)
