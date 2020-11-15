@@ -26,18 +26,19 @@ public class Hand {
         cardList.clear();
     }
 
+    //retourne une liste d'entier contenant les scores possibles en cours du joueur
     public List<Integer> count(){
         List<Integer> list = new LinkedList<>();
         list.add(0);
-        boolean isAs = false;
+        boolean flagAs = false;
         for (Card card : cardList) {
-            // Si on a 2 scores on incremente le second
-            if (isAs) {
+            //Le joueur a un As dans la main
+            if (flagAs) {
                 list.set(1, list.get(1) + card.getPoints());
             }
-            // Si on tombe sur un as pour la premiere fois (2 as = 22 donc on prend pas en compte)
-            if (!isAs && card.getValueSymbol().equals("A")) {
-                isAs = true;
+            //Le joueur vient de piocher un As
+            if (!flagAs && card.getValueSymbol().equals("A")) {
+                flagAs = true;
                 list.add(list.get(0) + 11);
             }
             list.set(0, list.get(0) + card.getPoints());
@@ -45,6 +46,7 @@ public class Hand {
         return list;
     }
 
+        //retourne le score le plus favorable au joueur
         public int best(){
             List<Integer> list = this.count();
             int choice = list.get(0);
@@ -55,6 +57,7 @@ public class Hand {
             return choice;
         }
 
+        //retourne la main du joueur sous la forme d'une liste de 'Card'
         public List<Card> getCardList(){
             return cardList;
         }

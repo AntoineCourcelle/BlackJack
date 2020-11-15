@@ -1,5 +1,6 @@
 package com.example.blackjack.model;
 
+//la classe Color sybolise la couleur de la carte (et son symbole associé)
 public enum Color {
     HEART("\u2665"),
     SPADE("\u2660"),

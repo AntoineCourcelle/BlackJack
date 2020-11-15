@@ -32,6 +32,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    //----------------------------------------------------------------------------------------------
+    //déclaration des variables
     AlertDialog.Builder diag;
     AlertDialog.Builder exceptionDiag;
     RadioGroup rg;
@@ -67,20 +69,26 @@ public class MainActivity extends AppCompatActivity {
     ImageButton languageButton;
     String playerName;
     boolean isUS = true;
+//--------------------------------------------------------------------------------------------------
 
-
+    //actions effectuées au lancement de l'application
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //instantiation d'une BlackJackConsole qui sert à tester le programme
         BlackJackConsole console = new BlackJackConsole();
 
+        //instantiation du jeu BlackJack
         blackJack = new BlackJack();
 
+        //recupération des mains pour la partie lancée
         playerCardList = blackJack.getPlayerCardList();
         bankCardList = blackJack.getBankCardList();
 
+        //------------------------------------------------------------------------------------------
+        //liaison des éléments de MainActivity.java et des éléments dans les layouts
         playerScore = findViewById(R.id.playerBestLabel);
         bankScore = findViewById(R.id.bankBestLabel);
 
@@ -90,18 +98,23 @@ public class MainActivity extends AppCompatActivity {
         playerNameLabel = findViewById(R.id.playerTextView);
         playerName = getString(R.string.player_labelUS);
         betLabel = findViewById(R.id.betLabel);
-        betLabel.setText(getString(R.string.yourBetUS) + "0" + getString(R.string.dollars));
+
         betSeekBar = findViewById(R.id.betSeekBar);
         betButton = findViewById(R.id.betButton);
 
+        mainLayout = findViewById(R.id.mainLayout);
+        //------------------------------------------------------------------------------------------
 
+        //mise initiale
+        betLabel.setText(getString(R.string.yourBetUS) + "0" + getString(R.string.dollars));
+
+        //initialisation le l'affichage
         updateBankPanel();
         updatePlayerPanel();
         updateScores();
         languageState = isUS;
 
-        mainLayout = findViewById(R.id.mainLayout);
-
+        //constructeur d'un AlertDialog s'affichant quand le deck est vide
         exceptionDiag = new AlertDialog.Builder(MainActivity.this)
                 .setTitle("Error")
                 .setMessage("The deck is empty")
@@ -115,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
         inflater = getLayoutInflater();
         dialogView = inflater.inflate(R.layout.diag_config, null);
 
+        //constructeur d'un AlertDialog accueillant les paramètres de configuration du jeu
         diag = new AlertDialog.Builder(MainActivity.this)
                 .setTitle(getString(R.string.configTitleUS))
                 .setIcon(R.drawable.settings)
@@ -173,6 +187,7 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .setView(dialogView);
 
+        //liaison des éléments de MainActivity.java et des éléments du layout diag_config.xml
         rg = dialogView.findViewById(R.id.themeRadioGroup);
         green = dialogView.findViewById(R.id.greenRadioButton);
         black = dialogView.findViewById(R.id.blackRadioButton);
@@ -185,10 +200,14 @@ public class MainActivity extends AppCompatActivity {
         //le fond de base est vert
         green.setChecked(true);
 
+        //cagnotte initiale
         poolSet.setText(Integer.toString(pool));
 
+        //création de l'AlertDialog a partir de diag
         alertDialog = diag.create();
 
+        //------------------------------------------------------------------------------------------
+        //gestion du bouton RESET
         reset = findViewById(R.id.resetButton);
         reset.setEnabled(false);
 
@@ -204,6 +223,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //------------------------------------------------------------------------------------------
+        //gestion du bouton ANOTHER CARD
         anotherCard = findViewById(R.id.anotherCardButton);
         anotherCard.setEnabled(false);
 
@@ -231,6 +252,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //------------------------------------------------------------------------------------------
+        //gestion du bouton NO MORE CARD
         noMoreCard = findViewById(R.id.noMoreCardButton);
         noMoreCard.setEnabled(false);
 
@@ -258,6 +281,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //------------------------------------------------------------------------------------------
+        //gestion du bouton de séléction de la langue
         languageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -272,6 +297,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //------------------------------------------------------------------------------------------
+        //gestion du curseur indiquant la mise
         betSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -286,15 +313,17 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
+                //non géré
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
+                //non géré
             }
         });
 
+        //------------------------------------------------------------------------------------------
+        //gestion du bouton BET
         betButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -324,6 +353,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //changement de la langue (manuel)
     private  void updateLanguage(){
         languageState = isUS;
         if(isUS){
@@ -354,6 +384,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //vérification de l'état du jeu (terminé/ joueur vainqueur / banque vainqueur)
+    //pour afficher les cartes correspondantes à l'écran
     private void checkGameState() {
         if(blackJack.getPlayerBest() == 21){
             addToPanel(playerLayout, "blackjack");
@@ -378,11 +410,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //mise a jour des mains
     private void updateHands(){
         playerCardList = blackJack.getPlayerCardList();
         bankCardList = blackJack.getBankCardList();
     }
 
+    //mise à jour des scores affichés
     private void updateScores(){
         if(isUS) {
             playerScore.setText(playerName + " " + getString(R.string.bestUS) + Integer.toString(blackJack.getPlayerBest()));
@@ -394,34 +428,40 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //----------------------------------------------------------------------------------------------
+    //mise à jour des mains affichés
+
+    //joueur
     private void updatePlayerPanel() {
         for (int i = 0; i < playerCardList.size(); i++) {
             displayPlayerCard(playerCardList.get(i));
         }
     }
 
+    //banque
     private void updateBankPanel(){
         for(int i=0; i < bankCardList.size(); i++){
             displayBankCard(bankCardList.get(i));
         }
     }
 
+    //----------------------------------------------------------------------------------------------
+    //affichage d'une carte dans un panel donné
+
+    //joueur
     private void displayPlayerCard(Card card){
         String token = card.getColorName() + "_" + card.getValueSymbol();
         addToPanel(playerLayout, token);
     }
 
+    //banque
     private void displayBankCard(Card card){
         String token = card.getColorName() + "_" + card.getValueSymbol();
         addToPanel(bankLayout, token);
     }
+    //----------------------------------------------------------------------------------------------
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_config, menu);
-        return true;
-    }
-
+    //affichage d'une image donnée dans un panel donné
     private void addToPanel(LinearLayout lay, String token){
         ImageView imv = new ImageView(this);
         int resID = getResources().getIdentifier("card_" + token.toLowerCase(), "drawable", getPackageName());
@@ -429,6 +469,14 @@ public class MainActivity extends AppCompatActivity {
         imv.setPadding(10,10,10,10);
         imv.setImageBitmap(tempBMP);
         lay.addView(imv);
+    }
+
+    //----------------------------------------------------------------------------------------------
+    //gestion du menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_config, menu);
+        return true;
     }
 
     @Override

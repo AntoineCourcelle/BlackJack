@@ -10,11 +10,13 @@ import com.example.blackjack.model.Color;
 import com.example.blackjack.model.Value;
 
 
-
+//Cette classe sert a lancer une série de logs afin de tester le programme en cours d'écriture du TP
 public class BlackJackConsole {
 
+    //création de notre TAG pour retrouver nos logs
     private static final String TAG = "MainAct";
 
+    //constructeur de la série de logs a écrire donné dans le TP
     public BlackJackConsole() {
         Card[] tab = {new Card(Value.TWO, Color.HEART), new Card(Value.JACK, Color.SPADE)};
         for (Card c : tab) {

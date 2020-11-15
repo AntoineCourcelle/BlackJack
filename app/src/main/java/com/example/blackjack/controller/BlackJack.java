@@ -13,6 +13,7 @@ public class BlackJack {
 
     public boolean gameFinished;
 
+    //constructeur sans paramètre
     public BlackJack(){
         gameFinished = false;
         deck = new Deck();
@@ -23,6 +24,7 @@ public class BlackJack {
 
     }
 
+    //constructeur avec le nombre de jeu dans le sabot et la mise en paramètre
     public BlackJack(int nbBox, int somme){
         gameFinished = false;
         deck = new Deck(nbBox);
@@ -33,11 +35,13 @@ public class BlackJack {
 
     }
 
+    //nettoyage de la main de la banque et du joueur (n'arrête pas une partie en cours)
     public void reset(){
         playerHand.clear();
         bankHand.clear();
     }
 
+    //lancement d'une partie
     public void play() throws EmptyDeckException{
         gameFinished = false;
         for(int i=0; i < 2; i++){
@@ -55,6 +59,8 @@ public class BlackJack {
         }
     }
 
+    //----------------------------------------------------------------------------------------------
+    //getters
     public String getPlayerHandString(){
         return playerHand.toString();
     }
@@ -70,7 +76,9 @@ public class BlackJack {
     public int getBankBest(){
         return bankHand.best();
     }
+    //----------------------------------------------------------------------------------------------
 
+    //retourne true si le joueur rassemble les conditions pour gagner sinon false
     public boolean isPlayerWinner(){
         if(isGameFinished()) {
             if (getPlayerBest() > getBankBest() && getPlayerBest() <= 21)
@@ -80,6 +88,7 @@ public class BlackJack {
         return false;
     }
 
+    //retourne true si la banque rassemble les conditions pour gagner sinon false
     public boolean isBankWinner(){
         if(isGameFinished()) {
             if (getBankBest() > getPlayerBest() && getBankBest() <= 21)
@@ -89,10 +98,12 @@ public class BlackJack {
         return false;
     }
 
+    //retourne true si la partie est terminée sinon false
     public boolean isGameFinished(){
         return gameFinished;
     }
 
+    //le joueur pioche une carte si cela est possible
     public void playerDrawAnotherCard() throws EmptyDeckException{
         if(!isGameFinished()){
             playerHand.add(deck.draw());
@@ -101,6 +112,7 @@ public class BlackJack {
         }
     }
 
+    //la banque termine la manche en piochant tant que son score ne dépasse pas celui du joueur
     public void bankLastTurn() throws EmptyDeckException{
         if(!isGameFinished() && bankHand.best() < 21 && playerHand.best() < 21 && playerHand.best() > 17){
             while(getBankBest() < getPlayerBest()){
@@ -116,12 +128,14 @@ public class BlackJack {
         }
     }
 
+    //retourne une copie de la main du joueur sous la forme d'une liste de 'Card'
     public List<Card> getPlayerCardList(){
         LinkedList<Card> originalList = (LinkedList<Card>) playerHand.getCardList();
         LinkedList<Card> copyList = new LinkedList<Card>(originalList);
         return copyList;
     }
 
+    //retourne une copie de la main de la banque sous la forme d'une liste de 'Card'
     public List<Card> getBankCardList(){
         LinkedList<Card> originalList = (LinkedList<Card>) bankHand.getCardList();
         LinkedList<Card> copyList = new LinkedList<Card>(originalList);

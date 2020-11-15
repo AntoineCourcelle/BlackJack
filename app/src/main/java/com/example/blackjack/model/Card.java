@@ -3,6 +3,7 @@ package com.example.blackjack.model;
 import com.example.blackjack.model.Color;
 import com.example.blackjack.model.Value;
 
+//la classe Card symbolise une carte du jeu
 public class Card {
 
     private Color color;
@@ -13,6 +14,8 @@ public class Card {
         this.value = value;
     }
 
+    //----------------------------------------------------------------------------------------------
+    //getters
     public String toString() {
         return getValueSymbol() + this.color.getSymbol();
     }
@@ -32,4 +35,5 @@ public class Card {
     public int getPoints(){
         return this.value.getPoints();
     }
+    //----------------------------------------------------------------------------------------------
 }

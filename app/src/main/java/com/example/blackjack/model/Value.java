@@ -1,5 +1,6 @@
 package com.example.blackjack.model;
 
+//la classe Value symbolise la valeur de la carte (et son nombre de points dans le blackjack)
 public enum Value {
     AS("A",1),
     TWO("2",2),

@@ -11,13 +11,14 @@ public class Deck {
 
     private LinkedList<Card> cardList;
 
+    //le deck contient 3 jeux par defaut
     public Deck() {
         this(3);
     }
 
+    //création du deck a partir du nombre de jeu passé en paramètre
     public Deck(int nbBox) {
         this.cardList = new LinkedList<>();
-        // Creation des nbBox decks
         for (int i = 0; i < nbBox; i++) {
             for (Color color : Color.values()) {
                 for (Value value : Value.values()) {
@@ -28,6 +29,7 @@ public class Deck {
         Collections.shuffle(cardList);
     }
 
+    //retourne une carte piochée au sommet du deck
     public Card draw() throws EmptyDeckException {
         Card card = this.cardList.pollFirst();
         if (card == null) {
