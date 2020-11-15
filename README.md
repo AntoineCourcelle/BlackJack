@@ -16,11 +16,16 @@ Le jeu a bien le fonctionnement attendu. Pour lancer la partie sans mise, il fau
 ## Captures d'écran
 
 ***Lancement de l'application :***
+![](screenshots/start.png)
 
 ***Changement de theme :***
+![](screenshots/theme.png)
 
 ***Configuration :***
+![](screenshots/config.png)
 
 ***Lancement d'une partie :***
+![](screenshots/play.png)
 
 ***Fin d'une partie :***
+![](screenshots/end.png)
